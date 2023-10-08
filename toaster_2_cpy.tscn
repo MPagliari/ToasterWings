@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://cfscshopp2o7r"]
+
+[ext_resource type="PackedScene" uid="uid://e2qafvoqdblk" path="res://toaster2.fbx" id="1_juqyy"]
+[ext_resource type="Script" path="res://Anim_toast_flap.gd" id="2_d1vkl"]
+[ext_resource type="Script" path="res://toaster_2_cpy.gd" id="2_fjf02"]
+[ext_resource type="Texture2D" uid="uid://bjxbv23u1hcmm" path="res://palat.png" id="3_i6i6k"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1y47g"]
+albedo_texture = ExtResource("3_i6i6k")
+albedo_texture_force_srgb = true
+roughness = 0.48
+emission_energy_multiplier = 4.31
+clearcoat_enabled = true
+backlight_enabled = true
+backlight = Color(0.14902, 0.14902, 0.14902, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nw56v"]
+
+[node name="toaster2" instance=ExtResource("1_juqyy")]
+transform = Transform3D(0.999994, -0.00165232, 0.00294724, 0.00165925, 0.999996, -0.0023533, -0.00294335, 0.00235817, 0.999993, 0, 0, 0)
+script = ExtResource("2_fjf02")
+
+[node name="toaster" parent="RootNode/Armature/Skeleton3D" index="0"]
+transform = Transform3D(1, 0, -2.11912e-10, -2.32831e-10, 1, 2.32831e-10, -3.22871e-11, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_1y47g")
+
+[node name="bread" type="MeshInstance3D" parent="RootNode/Armature_001" index="0"]
+transform = Transform3D(0.00114069, 1.71418e-10, 1.45519e-10, 1.59162e-12, -9.09495e-12, -0.0130273, 2.45137e-13, 0.0126481, 1.30967e-10, 0.00481622, 0.00903282, 0.0136871)
+visible = false
+mesh = SubResource("BoxMesh_nw56v")
+skeleton = NodePath("../OmniLight3D")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="RootNode/Armature_001" index="1"]
+transform = Transform3D(1, 4.83169e-11, -2.112e-18, 0, -4.37114e-08, -1, -4.83169e-11, 1, -4.37114e-08, 0.0045425, 0.00938186, 0.0154718)
+light_color = Color(0.796078, 0.345098, 0, 1)
+light_energy = 2.0
+shadow_enabled = true
+
+[node name="bread2" type="MeshInstance3D" parent="RootNode/Armature_001" index="2"]
+transform = Transform3D(0.00114069, 1.67773e-10, 1.45519e-10, 1.36424e-12, -7.27596e-12, -0.0130273, 2.43361e-13, 0.0126481, 1.30967e-10, -0.00457474, 0.0090605, 0.0137026)
+visible = false
+mesh = SubResource("BoxMesh_nw56v")
+skeleton = NodePath("../OmniLight3D")
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="RootNode/Armature_001" index="3"]
+transform = Transform3D(1, 4.68958e-11, -2.04988e-18, 0, -4.37114e-08, -1, -4.68958e-11, 1, -4.37114e-08, -0.00484847, 0.00940954, 0.0154873)
+light_color = Color(0.796078, 0.345098, 0, 1)
+light_energy = 2.0
+shadow_enabled = true
+shadow_bias = 0.0
+shadow_normal_bias = 1.347
+
+[node name="Skeleton3D" parent="RootNode/Armature_001" index="4"]
+bones/6/rotation = Quaternion(-0.0871558, 0, 0, 0.996195)
+
+[node name="Sun" parent="RootNode" index="2"]
+visible = false
+shadow_enabled = true
+
+[node name="AnimationPlayer" parent="." index="1"]
+script = ExtResource("2_d1vkl")
