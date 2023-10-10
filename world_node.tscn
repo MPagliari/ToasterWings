@@ -1,39 +1,63 @@
-[gd_scene load_steps=6 format=3 uid="uid://b70i4yhmsidpg"]
+[gd_scene load_steps=9 format=3 uid="uid://b70i4yhmsidpg"]
 
 [ext_resource type="Script" path="res://WorldNode.gd" id="1_g78ap"]
 [ext_resource type="PackedScene" uid="uid://cfscshopp2o7r" path="res://toaster_2_cpy.tscn" id="2_nvf44"]
 [ext_resource type="Script" path="res://sporn3D.gd" id="4_dra0v"]
 [ext_resource type="AudioStream" uid="uid://8aiky2rvgjmq" path="res://betarecords_rideofthevalkyriesrichardwagner.mp3" id="4_gr62c"]
+[ext_resource type="PackedScene" uid="uid://m6iaonwjo3ku" path="res://toast2.tscn" id="4_keu3t"]
+
+[sub_resource type="Environment" id="Environment_63xmm"]
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_blmjc"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_2sm8h"]
 
 [node name="WorldNode" type="Node3D"]
 script = ExtResource("1_g78ap")
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_63xmm")
+camera_attributes = SubResource("CameraAttributesPractical_blmjc")
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.470637, -0.605099, 0.642149, 0.357699, 0.79615, 0.488054, -0.806568, 2.51997e-08, 0.591141, 0, 0, 70.0497)
 shadow_enabled = true
 
-[node name="sporn3D" type="Node3D" parent="." node_paths=PackedStringArray("label")]
+[node name="sporn3D_toaster" type="Node3D" parent="." node_paths=PackedStringArray("label")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -38.2776)
 script = ExtResource("4_dra0v")
 model_scene = ExtResource("2_nvf44")
 label = NodePath("../CanvasLayer/toasters")
 metadata/_edit_group_ = true
 
-[node name="Timer" type="Timer" parent="sporn3D"]
-wait_time = 0.7
+[node name="Timer" type="Timer" parent="sporn3D_toaster"]
 autostart = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="sporn3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="sporn3D_toaster"]
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 1, 0, 0, 0)
-layers = 2
+mesh = SubResource("BoxMesh_2sm8h")
+
+[node name="sporn3D_toast" type="Node3D" parent="." node_paths=PackedStringArray("label")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -38.2776)
+script = ExtResource("4_dra0v")
+model_scene = ExtResource("4_keu3t")
+label = NodePath("../CanvasLayer/toasters")
+metadata/_edit_group_ = true
+
+[node name="Timer" type="Timer" parent="sporn3D_toast"]
+wait_time = 2.154
+autostart = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="sporn3D_toast"]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_2sm8h")
 
 [node name="MainCamera" type="Camera3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(0.0532392, -0.30029, 0.952361, -0.198972, 0.931399, 0.304804, -0.978558, -0.205721, -0.0101625, 22.3662, 6.28012, 73.9165)
+transform = Transform3D(0.666883, -0.492599, 0.559118, -2.98023e-08, 0.750331, 0.661063, -0.745162, -0.440852, 0.500383, 111.402, 155.405, 161.618)
 cull_mask = 1048573
+projection = 1
+size = 44.8727
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 visible = false
@@ -54,4 +78,5 @@ stream = ExtResource("4_gr62c")
 volume_db = -19.019
 autoplay = true
 
-[connection signal="timeout" from="sporn3D/Timer" to="sporn3D" method="_on_timer_timeout"]
+[connection signal="timeout" from="sporn3D_toaster/Timer" to="sporn3D_toaster" method="_on_timer_timeout"]
+[connection signal="timeout" from="sporn3D_toast/Timer" to="sporn3D_toast" method="_on_timer_timeout"]

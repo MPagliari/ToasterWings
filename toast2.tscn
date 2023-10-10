@@ -1,0 +1,19 @@
+[gd_scene load_steps=7 format=3 uid="uid://m6iaonwjo3ku"]
+
+[ext_resource type="PackedScene" uid="uid://b0pf4ahtoivn2" path="res://toast.glb" id="1_606xj"]
+[ext_resource type="Script" path="res://toaster_2_cpy.gd" id="2_mk2ic"]
+[ext_resource type="Texture2D" uid="uid://bjnhahteipb7j" path="res://Toast-2.jpg" id="2_rfbg3"]
+[ext_resource type="Texture2D" uid="uid://27ay4bm4gxd0" path="res://bread-crust.png" id="3_ojtti"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ndki0"]
+albedo_texture = ExtResource("2_rfbg3")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8cuml"]
+albedo_texture = ExtResource("3_ojtti")
+
+[node name="toast" instance=ExtResource("1_606xj")]
+script = ExtResource("2_mk2ic")
+
+[node name="Cube" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_ndki0")
+surface_material_override/1 = SubResource("StandardMaterial3D_8cuml")

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6n5me460auys"]
+
+[ext_resource type="PackedScene" uid="uid://b0pf4ahtoivn2" path="res://toast.glb" id="1_g07oc"]
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.4152, 0, 91.8898)
+
+[node name="toast" parent="." instance=ExtResource("1_g07oc")]

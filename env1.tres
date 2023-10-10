@@ -1,0 +1,20 @@
+[gd_resource type="Environment" load_steps=2 format=3 uid="uid://ciy7hq82ffmvu"]
+
+[sub_resource type="Sky" id="Sky_exu1r"]
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_exu1r")
+ssao_enabled = true
+glow_normalized = true
+glow_strength = 2.0
+glow_bloom = 0.56
+glow_blend_mode = 0
+fog_light_color = Color(0.0705882, 0.054902, 0.054902, 1)
+fog_sun_scatter = 1.0
+fog_density = 0.0713
+fog_height = 250.78
+volumetric_fog_enabled = true
+volumetric_fog_albedo = Color(0, 0, 0, 1)
+volumetric_fog_length = 126.69
+volumetric_fog_detail_spread = 0.5
