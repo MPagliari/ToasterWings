@@ -1,4 +1,4 @@
-# 🪶 ToasterWings
+# 🪶 Flying ToasterWings 🪶
 
 A flying toaster screensaver made with **Godot 4.x** — a nostalgic homage to the classic After Dark "Flying Toasters" screensaver, reimagined with some quirky wings and modern flair.
 
